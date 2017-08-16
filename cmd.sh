@@ -1,7 +1,7 @@
 #!/bin/bash
 
 help() {
-    echo $0 'command(start|stop)';
+    echo $0 'command(start|stop|build)';
 }
 
 if [ $# -lt 1 ]; then
@@ -14,7 +14,11 @@ _CMD=$1
 
 case $1 in
     start)
-	docker run -d --restart always --name ss -p 8891:8891 oddrationale/docker-shadowsocks -s 0.0.0.0 -p 8891 -k joffreyisking -m aes-256-cfb;
+	sudo docker run -d --restart always --name ss -p 8891:8891 djoffrey/docker-shadowsocks -s 0.0.0.0 -p 8891 -k joffreyisking -m aes-256-cfb;
+	;;
+
+    build)
+	sudo docker build -f Dockerfile -t djoffrey/docker-shadowsocks .
 	;;
 
     stop)
