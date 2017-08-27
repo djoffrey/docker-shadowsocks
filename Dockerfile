@@ -3,7 +3,7 @@
 # VERSION 0.0.3
 
 FROM ubuntu:16.04
-MAINTAINER DJoffrey
+MAINTAINER D.Joffrey
 
 RUN apt-get update && \
     apt-get install -y python-pip libsodium18

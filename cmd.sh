@@ -14,7 +14,7 @@ _CMD=$1
 
 case $1 in
     start)
-	sudo docker run -d --restart always --name ss -p 8891:8891 djoffrey/docker-shadowsocks -s 0.0.0.0 -p 8891 -k joffreyisking -m aes-256-cfb;
+	sudo docker run -d --restart always --name ss -p 8891:8891 djoffrey/docker-shadowsocks -s 0.0.0.0 -p 8891 -k ${SS_PASSWD} -m aes-256-cfb;
 	;;
 
     build)
