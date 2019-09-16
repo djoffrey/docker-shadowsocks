@@ -14,7 +14,7 @@ _CMD=$1
 
 case $1 in
     start)
-	sudo docker run -d --restart always --name ss -p 8891:8891 djoffrey/docker-shadowsocks -s 0.0.0.0 -p 8891 -k ${SS_PASSWD} -m aes-256-cfb;
+	sudo docker run -d --restart always --name ss -p 127.0.0.1:18891:8891 djoffrey/docker-shadowsocks -s 0.0.0.0 -p 8891 -k ${SS_PASSWD} -m aes-256-cfb;
 	;;
 
     build)
@@ -22,7 +22,7 @@ case $1 in
 	;;
 
     start-proxy)
-	sudo docker run --name sslh -d --env SSLH_OPTS='-p0.0.0.0:443 --anyprot localhost:18891' --net host --restart always riftbit/sslh
+	sudo docker run --name sslh -d --env SSLH_OPTS='-p0.0.0.0:443 --anyprot 127.0.0.1:18891' --net host --restart always riftbit/sslh
 	;;
 
     stop)
