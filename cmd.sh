@@ -1,7 +1,7 @@
 #!/bin/bash
 
 help() {
-    echo $0 'command(start|stop|build)';
+    echo $0 'command(start|stop|build|start-proxy)';
 }
 
 if [ $# -lt 1 ]; then
@@ -19,6 +19,10 @@ case $1 in
 
     build)
 	sudo docker build -f Dockerfile -t djoffrey/docker-shadowsocks .
+	;;
+
+    start-proxy)
+	sudo docker run --name sslh -d --env SSLH_OPTS='-p0.0.0.0:443 --anyprot localhost:18891' --net host --restart always riftbit/sslh
 	;;
 
     stop)
